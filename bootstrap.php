@@ -142,10 +142,11 @@ function take_flash(): ?array
 function page_start(string $title): void
 {
     $user = current_user();
+    $stylesheetVersion = (string) (filemtime(__DIR__ . '/app.css') ?: time());
     echo '<!doctype html><html lang="id"><head><meta charset="utf-8">';
     echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
     echo '<title>' . e($title) . ' | Pilkades 2026</title>';
-    echo '<link rel="stylesheet" href="' . APP_BASE_PATH . '/app.css"></head><body>';
+    echo '<link rel="stylesheet" href="' . APP_BASE_PATH . '/app.css?v=' . e($stylesheetVersion) . '"></head><body>';
     echo '<header class="topbar"><a class="brand" href="' . APP_BASE_PATH . '/">Pilkades <span>2026</span></a>';
     if ($user !== null) {
         echo '<nav><span class="identity">' . e($user['nama']) . ' · ' . e($user['role']) . '</span>';
