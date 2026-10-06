@@ -300,7 +300,7 @@ page_start('Admin');
             <button type="submit"><?= $editTps === null ? 'Tambah TPS' : 'Simpan TPS' ?></button>
             <?php if ($editTps !== null): ?><a href="<?= APP_BASE_PATH ?>/admin.php">Batal edit</a><?php endif; ?>
         </form>
-        <?php if ($tpsList === []): ?><p class="muted">Belum ada TPS.</p><?php else: ?><div class="record-list">
+        <?php if ($tpsList === []): ?><p class="muted">Belum ada TPS.</p><?php else: ?><div class="record-list tps-list-scroll">
         <?php foreach ($tpsList as $tps): ?><article class="record-row"><div><strong><?= e($tps['kode']) ?> · <?= e($tps['nama']) ?></strong><span><?= $tps['has_result'] ? 'Sudah ada hasil' : 'Belum diinput' ?></span></div><div class="row-actions"><a href="<?= APP_BASE_PATH ?>/admin.php?edit_tps=<?= e($tps['id']) ?>">Edit</a><form method="post" onsubmit="return confirm('Hapus TPS ini?')"><?= csrf_field() ?><input type="hidden" name="action" value="delete_tps"><input type="hidden" name="tps_id" value="<?= e($tps['id']) ?>"><button class="danger-button" type="submit" <?= $tps['has_result'] ? 'disabled' : '' ?>>Hapus</button></form></div></article><?php endforeach; ?>
         </div><?php endif; ?>
     </section>
